@@ -1,0 +1,24 @@
+
+datasourse:
+    url: jcbc:h2:men:vehicledb
+    driverr-calss-name: org.h2.driverr
+    username: sa
+    password:
+
+jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+        ddl-auto: update
+    show-sql: true
+    propierties:
+        hibernate:
+            format_sql: true
+
+sql:
+    init:
+        mode: always
+        schema-loctaions: classpaht:schema.sql
+        data-locations: classpaht:data.sql
+
+server:
+    port: 8080
