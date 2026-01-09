@@ -1,5 +1,12 @@
 package vehicle.controller;
 import java.util.List;
+import vehicle.dto.CreateVehicleDto;
+import vehicle.dto.UpdateVehicleDto;
+import vehicle.dto.PartialUpdateVehicleDto;
+import vehicle.dto.VehicleResponseDto;
+import vehicle.service.VehicleService;
+
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -26,25 +33,19 @@ public class VehiclesController {
     }
 
     @PostMapping
-    public VehicleResponseDto create(@Valid @RequestBody CreateVehicleDto dto) {
+    public VehicleResponseDto create( @RequestBody CreateVehicleDto dto) {
         return service.create(dto);
     }
-
-    @PostMapping("/validate-name")
-    public ResponseEntity<Boolean> validateModel(@Valid @RequestBody ValidateVehicleModelDto dto) {
-       service.validateModel(dto.id, dto.model);
-        return ResponseEntity.ok(true);
-      
-    }    
+   
 
     @PutMapping("/{id}")
-    public VehicleResponseDto update(@PathVariable Long id, @Valid @RequestBody UpdateVehicleDto dto) {
+    public VehicleResponseDto update(@PathVariable Long id,  @RequestBody UpdateVehicleDto dto) {
         return service.update(id, dto);
     }
 
     @PatchMapping("/{id}")
     public VehicleResponseDto partialUpdate(
-            @PathVariable Long id, @Valid
+            @PathVariable Long id, 
             @RequestBody PartialUpdateVehicleDto dto) {
         return service.partialUpdate(id, dto);
     }

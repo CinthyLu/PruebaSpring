@@ -1,23 +1,22 @@
-package ec.edu.ups.icc.fundamentos01.products.services;
+package vehicle.service;
 
 import java.util.List;
-
-import ec.edu.ups.icc.fundamentos01.products.dtos.CreateProductDto;
-import ec.edu.ups.icc.fundamentos01.products.dtos.PartialUpdateProductDto;
-import ec.edu.ups.icc.fundamentos01.products.dtos.ProductResponseDto;
-import ec.edu.ups.icc.fundamentos01.products.dtos.UpdateProductDto;
+import vehicle.dto.CreateVehicleDto;
+import vehicle.dto.VehicleResponseDto;
+import vehicle.dto.UpdateVehicleDto;
+import vehicle.dto.PartialUpdateVehicleDto;
 
 public interface VehicleService {
 
-     List<ProductResponseDto> findAll();
+     List<VehicleResponseDto> findAll();
 
-    ProductResponseDto findOne(Long id);
+    VehicleResponseDto findOne(Long id);
 
-    ProductResponseDto create(CreateProductDto dto);
+   VehicleResponseDto create(CreateVehicleDto dto);
 
-    ProductResponseDto update(Long id, UpdateProductDto dto);
+   VehicleResponseDto update(Long id, UpdateVehicleDto dto);
 
-    ProductResponseDto partialUpdate(Long id, PartialUpdateProductDto dto);
+    VehicleResponseDto partialUpdate(Long id, PartialUpdateVehicleDto dto);
 
     void delete(Long id);
 }

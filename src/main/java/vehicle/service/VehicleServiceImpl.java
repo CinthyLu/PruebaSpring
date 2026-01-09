@@ -1,5 +1,13 @@
  package vehicle.service;
 import java.util.List;
+import vehicle.dto.CreateVehicleDto;
+import vehicle.dto.UpdateVehicleDto;
+import vehicle.dto.PartialUpdateVehicleDto;
+import vehicle.repository.VehicleRepository;
+import vehicle.entity.VehicleEntity;
+import vehicle.mapper.VehicleMapper;
+
+
 import org.springframework.stereotype.Service;
 
 import vehicle.dto.VehicleResponseDto;
@@ -53,8 +61,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public ProductResponseDto update(Long id, UpdateVehicleDto dto) {
-        ProductEntity entity = repository.findById(id)
+    public VehicleResponseDto update(Long id, UpdateVehicleDto dto) {
+        VehicleEntity entity = repository.findById(id)
                 .orElseThrow(() ->
                         new NotFoundException("Producto no encontrado con ID: " + id)
                 );
@@ -75,7 +83,7 @@ public class VehicleServiceImpl implements VehicleService {
                         new NotFoundException("Producto no encontrado con ID: " + id)
                 );
 
-        if (dto.getName() != null) entity.setName(dto.getName());
+        if (dto.getModel() != null) entity.setModel(dto.getModel());
         if (dto.getPrice() != null) entity.setPrice(dto.getPrice());
         if (dto.getStock() != null) entity.setStock(dto.getStock());
 
@@ -85,7 +93,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void delete(Long id) {
-        ProductEntity entity = repository.findById(id)
+        VehicleEntity entity = repository.findById(id)
                 .orElseThrow(() ->
                         new NotFoundException("Producto no encontrado con ID: " + id)
                 );
@@ -93,21 +101,7 @@ public class VehicleServiceImpl implements VehicleService {
         repository.delete(entity);
     }
 
-    private void validateUniqueName(Integer id, String name) {
-        
-       userRepository.findByName(name).ifPresent(existing -> {
-            if (id == null || !existing.getId() != id.LongValue()) {
-                throw new ConflictException(
-                    "Ya existe un producto con el nombre: " + name
-                );
-            }
-        });
-    }
 
-    public ProductResponseDto secureUpdate(int id, SecureUpdateProductDto dto) {
-       
-        ProductEntity entity = repository.findById((long) id)
-                .orElseThrow(() -> new BusinessException("Producto no encontrado con ID: " + id));
+
 
     }
-}

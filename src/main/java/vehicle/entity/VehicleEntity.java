@@ -7,10 +7,10 @@ public class VehicleEntity {
     private double price;
     private int stock;
 
-    public Vehicle(int id, String brand, String Model, double price, int stock) {
+    public Vehicle (int id, String brand, String model, double price, int stock) {
         this.id = id;
         this.brand = brand;
-        this.model = Model;
+        this.model = model;
         this.price = price;
         this.stock = stock;
     }
@@ -21,7 +21,7 @@ public class VehicleEntity {
     public double getPrice() { return price; }
     public int getStock() { return stock; }
 
-    public void setModel(String model) { this.model = Model; }
+    public void setModel(String model) { this.model = model; }
     public void setPrice(double price) { this.price = price; }
 
 }
